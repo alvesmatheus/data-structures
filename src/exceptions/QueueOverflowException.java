@@ -1,5 +1,6 @@
 package exceptions;
 
+@SuppressWarnings("serial")
 public class QueueOverflowException extends Exception {
 
 	public QueueOverflowException() {
