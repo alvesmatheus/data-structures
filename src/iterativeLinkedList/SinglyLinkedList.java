@@ -62,18 +62,19 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	 * Returns the number of elements contained in the list.
 	 * 
 	 * @return the size of the list.
+	 * 
 	 */
 	@Override
 	public int size() {
 		SinglyLinkedListNode<T> node = this.getHead();
-		int counter = 0;
+		int size = 0;
 
 		while (!node.isNIL()) {
-			counter++;
+			size++;
 			node = node.getNext();
 		}
 
-		return counter;
+		return size;
 	}
 
 	/**
@@ -84,6 +85,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	 *            the element being searched for.
 	 * 
 	 * @return the element if it is in the list or null, otherwise.
+	 * 
 	 */
 	@Override
 	public T search(T element) {
@@ -107,6 +109,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	 * 
 	 * @param element
 	 *            the element to be inserted.
+	 * 
 	 */
 	@Override
 	public void insert(T element) {
@@ -135,6 +138,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	 * 
 	 * @param element
 	 *            the element to be removed.
+	 * 
 	 */
 	@Override
 	public void remove(T element) {
@@ -164,6 +168,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	 * 
 	 * @return an array containing all the elements contained in the structure in
 	 *         the same order they appear.
+	 * 
 	 */
 	@Override
 	public T[] toArray() {
@@ -171,7 +176,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		SinglyLinkedListNode<T> auxNode = this.getHead();
 
 		@SuppressWarnings("unchecked")
-		T[] array = (T[]) new Comparable[this.size()];
+		T[] array = (T[]) new Object[this.size()];
 
 		int i = 0;
 		if (!this.isEmpty()) {
