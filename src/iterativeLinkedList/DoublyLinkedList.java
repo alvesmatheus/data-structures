@@ -56,6 +56,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 * 
 	 * @param element
 	 *            the element to be inserted.
+	 * 
 	 */
 	@Override
 	public void insert(T element) {
@@ -117,6 +118,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 * 
 	 * @param element
 	 *            the element to be removed.
+	 * 
 	 */
 	@Override
 	public void remove(T element) {
