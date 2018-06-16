@@ -3,6 +3,7 @@ package hashTable;
 import java.util.LinkedList;
 
 import abstractStructures.HashFunction;
+import exceptions.UnsupportedHashingMethodException;
 import hashFunction.ClosedAddressMethod;
 import hashFunction.HashFunctionDivisionMethod;
 import hashFunction.HashFunctionMultiplicationMethod;
@@ -24,6 +25,8 @@ import hashFunction.HashFunctionMultiplicationMethod;
  */
 public class ClosedAddressHashTable<T> extends AbstractHashTable<T> {
 
+	protected HashFunction<T> hashFunction;
+
 	/**
 	 * Constructs a new ClosedAddressHashTable based on a desired size of its
 	 * internal array and on the hashing method that must be used by the table.
@@ -42,7 +45,7 @@ public class ClosedAddressHashTable<T> extends AbstractHashTable<T> {
 			realSize = Util.getPrimeAbove(desiredSize);
 		}
 
-		this.hashFunction = this.createHashFunction(method, realSize);
+		this.hashFunction = this.createHashFunction(realSize, method);
 		this.table = new LinkedList[realSize];
 	}
 
@@ -50,16 +53,16 @@ public class ClosedAddressHashTable<T> extends AbstractHashTable<T> {
 	 * Based on the internal array length and on the desired method of hashing, this
 	 * method creates the appropriate type of HashFunction and returns it.
 	 * 
-	 * @param method
-	 *            The method that must be used by the hash function.
 	 * @param tableSize
 	 *            The hash table's internal array length.
+	 * @param method
+	 *            The method that must be used by the hash function.
 	 * 
 	 * @return an appropriate hash function to the hash table.
 	 * 
 	 */
 	@SuppressWarnings("rawtypes")
-	private HashFunction createHashFunction(ClosedAddressMethod method, int tableSize) {
+	private HashFunction createHashFunction(int tableSize, ClosedAddressMethod method) {
 		HashFunction function = null;
 
 		switch (method) {
@@ -70,9 +73,20 @@ public class ClosedAddressHashTable<T> extends AbstractHashTable<T> {
 		case MULTIPLICATION:
 			function = new HashFunctionMultiplicationMethod(tableSize);
 			break;
+
+		default:
+			throw new UnsupportedHashingMethodException();
 		}
 
 		return function;
+	}
+
+	public HashFunction<T> getHashFunction() {
+		return this.hashFunction;
+	}
+
+	public void setHashFunction(HashFunction<T> hashFunction) {
+		this.hashFunction = hashFunction;
 	}
 
 	/**
