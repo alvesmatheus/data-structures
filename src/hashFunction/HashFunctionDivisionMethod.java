@@ -14,7 +14,7 @@ import abstractStructures.HashFunction;
  */
 public class HashFunctionDivisionMethod<T> implements HashFunction<T> {
 
-	protected int tableSize;
+	private int tableSize;
 
 	/**
 	 * Constructs a new HashFunctionDivisionMethod based on the size of the hash

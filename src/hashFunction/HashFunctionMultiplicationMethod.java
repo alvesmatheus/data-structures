@@ -15,7 +15,7 @@ import abstractStructures.HashFunction;
  */
 public class HashFunctionMultiplicationMethod<T> implements HashFunction<T> {
 
-	protected int tableSize;
+	private int tableSize;
 	private static final double A = (Math.sqrt(5) - 1) / 2;
 
 	/**
