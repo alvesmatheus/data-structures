@@ -1,6 +1,5 @@
 package hashTable;
 
-import abstractStructures.HashFunction;
 import abstractStructures.HashTable;
 
 /**
@@ -16,7 +15,6 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	protected int elements;
 	protected int collisions;
 	protected Object[] table;
-	protected HashFunction<T> hashFunction;
 
 	/**
 	 * Constructs a new AbstractHashTable. It will start with no elements or
@@ -30,14 +28,6 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 
 	public int getCollisions() {
 		return this.collisions;
-	}
-
-	public HashFunction<T> getHashFunction() {
-		return this.hashFunction;
-	}
-
-	public void setHashFunction(HashFunction<T> hashFunction) {
-		this.hashFunction = hashFunction;
 	}
 
 	/**
