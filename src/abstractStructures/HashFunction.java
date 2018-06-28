@@ -1,8 +1,12 @@
 package abstractStructures;
 
 /**
- * It represents a generic hash function that will be used by a hash table to
- * calculate indexes of its internal array.
+ * A hash function is a function that can be used to map data of arbitrary size
+ * to data of a fixed size. The values returned by a hash function are called
+ * hash values, hash codes or simply hashes. Hash functions are often used in
+ * combination with a hash table.
+ * 
+ * @author Matheus Alves dos Santos
  * 
  */
 public interface HashFunction<T> {
@@ -12,7 +16,7 @@ public interface HashFunction<T> {
 	 * calculates a hash for the given element.
 	 * 
 	 * @param element
-	 *            the object which hash must be calculated.
+	 *            the object whose hash must be calculated.
 	 * 
 	 * @return the hash of the given object.
 	 * 

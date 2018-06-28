@@ -31,19 +31,19 @@ public class DoublyLinkedQueue<T> implements Queue<T> {
 	 */
 	public DoublyLinkedQueue(int size) {
 		if (size >= 0) {
-			this.size = size;
 			this.list = new DoublyLinkedList<T>();
+			this.size = size;
 		}
 	}
 
 	/**
 	 * This method validates a element received by the queue. The element must not
-	 * be null to the queue operations work properly.
+	 * be null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a queue operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
 	private boolean isValidInput(T element) {
@@ -51,11 +51,46 @@ public class DoublyLinkedQueue<T> implements Queue<T> {
 	}
 
 	/**
-	 * Inserts a new element in the queue or returns an exception if the queue is
-	 * already full. Null elements are not allowed (the queue remains unchanged).
+	 * Returns true, if the queue is empty, or false, otherwise.
+	 * 
+	 * @return the boolean that indicates if the queue is empty.
+	 * 
+	 */
+	@Override
+	public boolean isEmpty() {
+		return this.list.isEmpty();
+	}
+
+	/**
+	 * Returns true, if the queue is full, or false, otherwise.
+	 * 
+	 * @return the boolean that indicates if the queue is full.
+	 * 
+	 */
+	@Override
+	public boolean isFull() {
+		return (this.size == this.list.size());
+	}
+
+	/**
+	 * Returns (without removing) the oldest element of the queue or null if the
+	 * queue is empty.
+	 * 
+	 * @return the first element of the queue (or null if the queue is empty).
+	 * 
+	 */
+	@Override
+	public T head() {
+		return ((DoublyLinkedList<T>) this.list).getHead().getData();
+	}
+
+	/**
+	 * Inserts a new element at the queue or throws an exception if the queue is
+	 * already full. Null elements are not allowed. If the given element is null,
+	 * the queue will remain unchanged.
 	 * 
 	 * @param element
-	 *            The element that must be enqueued.
+	 *            The element to be enqueued.
 	 * 
 	 * @throws QueueOverflowException
 	 * 
@@ -72,8 +107,8 @@ public class DoublyLinkedQueue<T> implements Queue<T> {
 	}
 
 	/**
-	 * If the queue has elements, it removes the oldest one in the queue and returns
-	 * it. Otherwise, it throws an exception.
+	 * Removes the oldest element from the queue and returns it. If the queue is
+	 * empty, this method throws a exception.
 	 * 
 	 * @return the dequeued element.
 	 * 
@@ -90,40 +125,6 @@ public class DoublyLinkedQueue<T> implements Queue<T> {
 		this.list.removeFirst();
 
 		return dequeued;
-	}
-
-	/**
-	 * Returns (without removing) the oldest element of the queue or null if the
-	 * queue is empty.
-	 * 
-	 * @return the first element of the queue (or null if the queue is empty).
-	 * 
-	 */
-	@Override
-	public T head() {
-		return ((DoublyLinkedList<T>) this.list).getHead().getData();
-	}
-
-	/**
-	 * Returns true, if the queue is empty, or false, otherwise.
-	 * 
-	 * @return the boolean meaning if the queue is empty.
-	 * 
-	 */
-	@Override
-	public boolean isEmpty() {
-		return this.list.isEmpty();
-	}
-
-	/**
-	 * Returns true, if the queue is full, or false, otherwise.
-	 * 
-	 * @return the boolean meaning if the queue is full.
-	 * 
-	 */
-	@Override
-	public boolean isFull() {
-		return (this.size == this.list.size());
 	}
 
 }

@@ -74,9 +74,9 @@ public class HashFunctionLinearProbing<T> implements ProbingHashFunction<T> {
 	 * function, calculates a hash for the given element.
 	 * 
 	 * @param element
-	 *            the object which hash must be calculated.
+	 *            the object whose hash must be calculated.
 	 * @param probe
-	 *            the actual probe value.
+	 *            the current probe value.
 	 * 
 	 * @return the hash of the given object.
 	 * 

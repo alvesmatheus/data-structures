@@ -16,16 +16,15 @@ import exceptions.UnsupportedHashingMethodException;
  * 
  */
 public class HashFunctionQuadraticProbing<T> implements ProbingHashFunction<T> {
-	
+
 	private static final int c1 = 1;
 	private static final int c2 = 1;
 
 	private HashFunction<T> basicHashFunction;
 	private int tableSize;
-	
 
 	/**
-	 * Constructs a new HashFunctionLinearProbing based on the size of the hash
+	 * Constructs a new HashFunctionQuadraticProbing based on the size of the hash
 	 * table that will contain it. Also, it uses the method used by the internal
 	 * HashFunction on the construction.
 	 * 
@@ -82,9 +81,9 @@ public class HashFunctionQuadraticProbing<T> implements ProbingHashFunction<T> {
 	 * function, calculates a hash for the given element.
 	 * 
 	 * @param element
-	 *            the object which hash must be calculated.
+	 *            the object whose hash must be calculated.
 	 * @param probe
-	 *            the actual probe value.
+	 *            the current probe value.
 	 * 
 	 * @return the hash of the given object.
 	 * 

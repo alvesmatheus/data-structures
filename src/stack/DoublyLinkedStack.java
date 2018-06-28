@@ -22,8 +22,8 @@ public class DoublyLinkedStack<T> implements Stack<T> {
 	/**
 	 * Constructs a DoublyLinkedStack from the given size parameter. This
 	 * DoublyLinkedStack is initially empty and its list starts as an empty
-	 * DoublyLinkedList. This stack will be able to contain and operate with
-	 * T-typed objects. The size must be positive.
+	 * DoublyLinkedList. This stack will be able to contain and operate with T-typed
+	 * objects. The size must be positive.
 	 * 
 	 * @param size
 	 *            The size of the new DoublyLinkedStack.
@@ -37,13 +37,13 @@ public class DoublyLinkedStack<T> implements Stack<T> {
 	}
 
 	/**
-	 * This method validates a element received by the stack. The element must not
-	 * be null to the stack operations work properly.
+	 * This method validates a element received by the queue. The element must not
+	 * be null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a stack operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
 	private boolean isValidInput(T element) {
@@ -51,11 +51,46 @@ public class DoublyLinkedStack<T> implements Stack<T> {
 	}
 
 	/**
-	 * Inserts a new element in the stack or returns an exception if the stack is
-	 * already full. Null elements are not allowed (the queue remains unchanged).
+	 * Returns true, if the stack is empty, or false, otherwise.
+	 * 
+	 * @return the boolean that indicates if the stack is empty.
+	 * 
+	 */
+	@Override
+	public boolean isEmpty() {
+		return this.list.isEmpty();
+	}
+
+	/**
+	 * Returns true, if the stack is full, or false, otherwise.
+	 * 
+	 * @return the boolean that indicates if the stack is full.
+	 * 
+	 */
+	@Override
+	public boolean isFull() {
+		return (this.size == this.list.size());
+	}
+
+	/**
+	 * Returns (without removing) the latest element of the stack or null if the
+	 * stack is empty.
+	 * 
+	 * @return the latest element of the stack (or null if the stack is empty).
+	 * 
+	 */
+	@Override
+	public T top() {
+		return ((DoublyLinkedList<T>) this.list).getHead().getData();
+	}
+
+	/**
+	 * Inserts a new element in the stack or throws an exception if the stack is
+	 * already full. Null elements are not allowed. If the given element is null,
+	 * the stack will remain unchanged.
 	 * 
 	 * @param element
-	 *            The element that must be pushed.
+	 *            The element to be pushed.
 	 * 
 	 * @throws StackOverflowException
 	 * 
@@ -73,8 +108,8 @@ public class DoublyLinkedStack<T> implements Stack<T> {
 	}
 
 	/**
-	 * If the stack has elements, it removes the newest one in the stack and returns
-	 * it. Otherwise, it throws an exception.
+	 * Removes the latest element from the queue and returns it. If the stack is
+	 * empty, this method throws a exception.
 	 * 
 	 * @return the popped element.
 	 * 
@@ -91,40 +126,6 @@ public class DoublyLinkedStack<T> implements Stack<T> {
 		this.list.removeFirst();
 
 		return unstacked;
-	}
-
-	/**
-	 * Returns (without removing) the newest element of the stack or null if the
-	 * stack is empty.
-	 * 
-	 * @return the newest element of the stack (or null if the stack is empty).
-	 * 
-	 */
-	@Override
-	public T top() {
-		return ((DoublyLinkedList<T>) this.list).getHead().getData();
-	}
-
-	/**
-	 * Returns true, if the stack is empty, or false, otherwise.
-	 * 
-	 * @return the boolean meaning if the stack is empty.
-	 * 
-	 */
-	@Override
-	public boolean isEmpty() {
-		return this.list.isEmpty();
-	}
-
-	/**
-	 * Returns true, if the stack is full, or false, otherwise.
-	 * 
-	 * @return the boolean meaning if the stack is full.
-	 * 
-	 */
-	@Override
-	public boolean isFull() {
-		return (this.size == this.list.size());
 	}
 
 }

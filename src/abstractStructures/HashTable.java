@@ -1,17 +1,21 @@
 package abstractStructures;
 
 /**
- * The interface of a generic hash table. It keeps values of type T. The table
- * can work in two modes: closed address (with chaining) and open address (with
- * probing).
+ * A hash table is a data structure that implements an associative array
+ * abstract data type, a structure that can map keys to values. A hash table
+ * uses a hash function to compute an index into an array from which the desired
+ * value can be found. It keeps values of type T. The table can work in two
+ * modes: closed address (with chaining) and open address (with probing).
+ * 
+ * @author Matheus Alves dos Santos
  * 
  */
 public interface HashTable<T> {
 
 	/**
-	 * Determines whether the hash table is empty or not.
+	 * Returns true, if the hash table is empty, or false, otherwise.
 	 * 
-	 * @return true if the table is empty. False, otherwise.
+	 * @return the boolean that indicates if the table is empty.
 	 * 
 	 */
 	public boolean isEmpty();
@@ -25,10 +29,9 @@ public interface HashTable<T> {
 	public int capacity();
 
 	/**
-	 * Returns how many objects have been inserted into the hash table until the
-	 * moment.
+	 * Returns the number of elements contained in the hash table.
 	 * 
-	 * @return the number of elements contained in the table.
+	 * @return the size of the tree.
 	 * 
 	 */
 	public int size();
@@ -39,7 +42,7 @@ public interface HashTable<T> {
 	 * the "collisions" attribute is incremented.
 	 * 
 	 * @param element
-	 *            the object that must be inserted into the hash table.
+	 *            the element to be inserted.
 	 * 
 	 */
 	public void insert(T element);
@@ -48,19 +51,19 @@ public interface HashTable<T> {
 	 * Removes an element from the hash table.
 	 * 
 	 * @param element
-	 *            the object that must be removed from the hash table.
+	 *            the element to be removed.
 	 * 
 	 */
 	public void remove(T element);
 
 	/**
 	 * Searches for a given element in the hash table. If the table contains it, the
-	 * element will be returned. Otherwise, this method must return a null.
+	 * element will be returned. Otherwise, this method must return null.
 	 * 
 	 * @param element
-	 *            the object that must be searched.
+	 *            the element being searched for.
 	 * 
-	 * @return the searched element, if the table contains it. Null, otherwise.
+	 * @return the searched element, if it is in the table, or null, otherwise.
 	 * 
 	 */
 	public T search(T element);

@@ -92,26 +92,16 @@ public class OpenAddressHashTable<T> extends AbstractHashTable<T> {
 
 	/**
 	 * This method validates a element received by the hash table. The element must
-	 * not be null to the hash table operations work properly.
+	 * not be null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a hash table operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
 	private boolean isValidInput(T element) {
 		return (element != null);
-	}
-
-	/**
-	 * Determines whether the hash table is full or not.
-	 * 
-	 * @return true if the table is full. False, otherwise.
-	 * 
-	 */
-	public boolean isFull() {
-		return (this.elements == this.table.length);
 	}
 
 	/**
@@ -120,7 +110,7 @@ public class OpenAddressHashTable<T> extends AbstractHashTable<T> {
 	 * the "collisions" attribute is incremented.
 	 * 
 	 * @param element
-	 *            the object that must be inserted into the hash table.
+	 *            the element to be inserted.
 	 * 
 	 */
 	@Override
@@ -162,7 +152,7 @@ public class OpenAddressHashTable<T> extends AbstractHashTable<T> {
 	 * Removes an element from the hash table.
 	 * 
 	 * @param element
-	 *            the object that must be removed from the hash table.
+	 *            the element to be removed.
 	 * 
 	 */
 	@Override
@@ -179,12 +169,12 @@ public class OpenAddressHashTable<T> extends AbstractHashTable<T> {
 
 	/**
 	 * Searches for a given element in the hash table. If the table contains it, the
-	 * element will be returned. Otherwise, this method must return a null.
+	 * element will be returned. Otherwise, this method must return null.
 	 * 
 	 * @param element
-	 *            the object that must be searched.
+	 *            the element being searched for.
 	 * 
-	 * @return the searched element, if the table contains it. Null, otherwise.
+	 * @return the searched element, if it is in the table, or null, otherwise.
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
@@ -253,6 +243,16 @@ public class OpenAddressHashTable<T> extends AbstractHashTable<T> {
 		}
 
 		return index;
+	}
+
+	/**
+	 * Returns true, if the hash table is full, or false, otherwise.
+	 * 
+	 * @return the boolean that indicates if the hash table is full.
+	 * 
+	 */
+	public boolean isFull() {
+		return (this.elements == this.table.length);
 	}
 
 }

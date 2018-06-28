@@ -28,7 +28,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * Constructs a new DoublyLinkedList which data and next attributes will be
+	 * Constructs a new DoublyLinkedList whose data and next attributes will be
 	 * equals to the given parameters.
 	 * 
 	 * @param data
@@ -53,22 +53,8 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * This method validates a element received by the list. The element must not be
-	 * null to the list operations work properly.
-	 * 
-	 * @param element
-	 *            The element that must be used in a list operation.
-	 * 
-	 * @return the boolean that represents the element validity.
-	 * 
-	 */
-	private boolean isValidInput(T element) {
-		return (element != null);
-	}
-
-	/**
-	 * Inserts a new element at the end of the list. Null elements are not allowed
-	 * (the list remains unchanged).
+	 * Inserts a new element at the end of the list. Null elements are not allowed.
+	 * If the given element is null, the list will remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be inserted.
@@ -76,13 +62,13 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 */
 	@Override
 	public void insert(T element) {
-		if (this.isValidInput(element)) {
+		if (super.isValidInput(element)) {
 
-			if (this.isEmpty()) {
+			if (super.isEmpty()) {
 				DoublyLinkedList<T> newNIL = new DoublyLinkedList<T>(null, null, this);
 
-				this.setData(element);
-				this.setNext(newNIL);
+				super.setData(element);
+				super.setNext(newNIL);
 
 				if (this.getPrevious() == null) {
 					this.setPrevious(new DoublyLinkedList<T>(null, this, null));
@@ -90,13 +76,14 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 			}
 
 			else {
-				this.getNext().insert(element);
+				super.getNext().insert(element);
 			}
 		}
 	}
 
 	/**
-	 * Inserts a new element in the first position (head) of the list.
+	 * Inserts a new element at the beginning of the list. Null elements are not
+	 * allowed. If the given element is null, the list will remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be inserted.
@@ -104,23 +91,23 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 */
 	@Override
 	public void insertFirst(T element) {
-		if (this.isValidInput(element)) {
+		if (super.isValidInput(element)) {
 
-			if (this.isEmpty()) {
+			if (super.isEmpty()) {
 				DoublyLinkedList<T> newNIL1 = new DoublyLinkedList<T>(null, null, this);
 				DoublyLinkedList<T> newNIL2 = new DoublyLinkedList<T>(null, this, null);
 
-				this.setData(element);
-				this.setNext(newNIL1);
+				super.setData(element);
+				super.setNext(newNIL1);
 				this.setPrevious(newNIL2);
 			}
 
 			else if (this.getPrevious().isEmpty()) {
-				DoublyLinkedList<T> newNode = new DoublyLinkedList<T>(this.getData(),
-						(DoublyLinkedList<T>) this.getNext(), this);
+				DoublyLinkedList<T> newNode = new DoublyLinkedList<T>(super.getData(),
+						(DoublyLinkedList<T>) super.getNext(), this);
 
-				this.setData(element);
-				this.setNext(newNode);
+				super.setData(element);
+				super.setNext(newNode);
 
 				if (newNode.getNext() instanceof DoublyLinkedList<?>) {
 					((DoublyLinkedList<T>) newNode.getNext()).setPrevious(newNode);
@@ -134,8 +121,8 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * Removes an element from the list. If the element is not contained in the
-	 * list, the list must remain unchanged.
+	 * Removes an element from the list. If the list does not contain the element,
+	 * the list must remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be removed.
@@ -143,55 +130,55 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 */
 	@Override
 	public void remove(T element) {
-		if (this.isValidInput(element)) {
-			if (!this.isEmpty()) {
+		if (super.isValidInput(element)) {
+			if (!super.isEmpty()) {
 
-				if (this.getData().equals(element)) {
+				if (super.getData().equals(element)) {
 
-					if (this.getPrevious().isEmpty() && this.getNext().isEmpty()) {
-						this.setData(null);
-						this.setNext(null);
+					if (this.getPrevious().isEmpty() && super.getNext().isEmpty()) {
+						super.setData(null);
+						super.setNext(null);
 						this.setPrevious(null);
 					}
 
 					else {
-						setData(this.getNext().getData());
-						setNext(this.getNext().getNext());
+						setData(super.getNext().getData());
+						setNext(super.getNext().getNext());
 
-						if (this.getNext() != null) {
-							if (this.getNext() instanceof DoublyLinkedList<?>) {
-								((DoublyLinkedList<T>) this.getNext()).setPrevious(this);
+						if (super.getNext() != null) {
+							if (super.getNext() instanceof DoublyLinkedList<?>) {
+								((DoublyLinkedList<T>) super.getNext()).setPrevious(this);
 							}
 						}
 					}
 				}
 
 				else {
-					this.getNext().remove(element);
+					super.getNext().remove(element);
 				}
 			}
 		}
 	}
 
 	/**
-	 * Removes the first element (head) of the list.
+	 * Removes the first element of the list.
 	 * 
 	 */
 	@Override
 	public void removeFirst() {
-		if (!this.isEmpty()) {
+		if (!super.isEmpty()) {
 
-			if (this.getPrevious().isEmpty() && this.getNext().isEmpty()) {
-				this.setData(null);
-				this.setNext(null);
+			if (this.getPrevious().isEmpty() && super.getNext().isEmpty()) {
+				super.setData(null);
+				super.setNext(null);
 				this.setPrevious(null);
 			}
 
 			else if (this.getPrevious().isEmpty()) {
-				this.setData(this.getNext().getData());
-				this.setNext(this.getNext().getNext());
+				super.setData(this.getNext().getData());
+				super.setNext(this.getNext().getNext());
 
-				if (this.getNext() instanceof DoublyLinkedList<?>) {
+				if (super.getNext() instanceof DoublyLinkedList<?>) {
 					((DoublyLinkedList<T>) this.getNext()).setPrevious(this);
 				}
 			}
@@ -203,29 +190,29 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * Removes the last element (last) of the list.
+	 * Removes the last element of the list.
 	 * 
 	 */
 	@Override
 	public void removeLast() {
-		if (!this.isEmpty()) {
+		if (!super.isEmpty()) {
 
-			if (this.getPrevious().isEmpty() && this.getNext().isEmpty()) {
-				this.setData(null);
-				this.setNext(null);
+			if (this.getPrevious().isEmpty() && super.getNext().isEmpty()) {
+				super.setData(null);
+				super.setNext(null);
 				this.setPrevious(null);
 			}
 
-			else if (this.getNext().isEmpty()) {
-				this.setData(this.getPrevious().getData());
+			else if (super.getNext().isEmpty()) {
+				super.setData(this.getPrevious().getData());
 				this.setPrevious(this.getPrevious().getPrevious());
 
 				this.getPrevious().setNext(this);
 			}
 
 			else {
-				if (this.getNext() instanceof DoublyLinkedList<?>) {
-					((DoublyLinkedList<T>) this.getNext()).removeLast();
+				if (super.getNext() instanceof DoublyLinkedList<?>) {
+					((DoublyLinkedList<T>) super.getNext()).removeLast();
 				}
 			}
 		}

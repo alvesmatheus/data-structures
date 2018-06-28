@@ -20,9 +20,10 @@ public class BasicQueue<T> implements Queue<T> {
 	private int tail;
 
 	/**
-	 * Constructs a BasicQueue from the given positive size parameter. This BasicQueue is
-	 * initially empty, so its tail starts as -1. Also, this queue will be able to
-	 * contain and operate with T-typed objects. The size must be positive.
+	 * Constructs a BasicQueue from the given positive size parameter. This
+	 * BasicQueue is initially empty, so its tail starts as -1. Also, this queue
+	 * will be able to contain and operate with T-typed objects. The size must be
+	 * positive.
 	 * 
 	 * @param size
 	 *            The size of the new BasicQueue.
@@ -38,12 +39,12 @@ public class BasicQueue<T> implements Queue<T> {
 
 	/**
 	 * This method validates a element received by the queue. The element must not
-	 * be null to the queue operations work properly.
+	 * be null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a queue operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
 	private boolean isValidInput(T element) {
@@ -53,7 +54,7 @@ public class BasicQueue<T> implements Queue<T> {
 	/**
 	 * Returns true, if the queue is empty, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the queue is empty.
+	 * @return the boolean that indicates if the queue is empty.
 	 * 
 	 */
 	@Override
@@ -64,7 +65,7 @@ public class BasicQueue<T> implements Queue<T> {
 	/**
 	 * Returns true, if the queue is full, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the queue is full.
+	 * @return the boolean that indicates if the queue is full.
 	 * 
 	 */
 	@Override
@@ -91,11 +92,12 @@ public class BasicQueue<T> implements Queue<T> {
 	}
 
 	/**
-	 * Inserts a new element in the queue or returns an exception if the queue is
-	 * already full. Null elements are not allowed (the queue remains unchanged).
+	 * Inserts a new element at the queue or throws an exception if the queue is
+	 * already full. Null elements are not allowed. If the given element is null,
+	 * the queue will remain unchanged.
 	 * 
 	 * @param element
-	 *            The element that must be enqueued.
+	 *            The element to be enqueued.
 	 * 
 	 * @throws QueueOverflowException
 	 * 
@@ -112,19 +114,8 @@ public class BasicQueue<T> implements Queue<T> {
 	}
 
 	/**
-	 * Iterates over the queue's array, making every element equal to its successor.
-	 * It is a linear operation that helps the dequeuing process.
-	 * 
-	 */
-	private void shiftLeft() {
-		for (int i = 0; i < this.tail; i++) {
-			this.array[i] = this.array[i + 1];
-		}
-	}
-
-	/**
-	 * If the queue has elements, it removes the oldest one in the queue and returns
-	 * it. Otherwise, it throws an exception.
+	 * Removes the oldest element from the queue and returns it. If the queue is
+	 * empty, this method throws a exception.
 	 * 
 	 * @return the dequeued element.
 	 * 
@@ -142,6 +133,17 @@ public class BasicQueue<T> implements Queue<T> {
 		this.tail--;
 
 		return dequeued;
+	}
+
+	/**
+	 * Iterates over the queue's array, making every element equal to its successor.
+	 * It is a linear operation used during the dequeuing operation.
+	 * 
+	 */
+	private void shiftLeft() {
+		for (int i = 0; i < this.tail; i++) {
+			this.array[i] = this.array[i + 1];
+		}
 	}
 
 }

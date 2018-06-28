@@ -39,7 +39,7 @@ public class HashFunctionMultiplicationMethod<T> implements HashFunction<T> {
 	 * calculates a hash for the given element.
 	 * 
 	 * @param element
-	 *            the object which hash must be calculated.
+	 *            the object whose hash must be calculated.
 	 * 
 	 * @return the hash of the given object.
 	 * 

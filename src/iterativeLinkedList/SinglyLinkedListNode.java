@@ -25,12 +25,12 @@ public class SinglyLinkedListNode<T> {
 
 	/**
 	 * Constructs a SinglyLinkedListNode containing the data given as parameter and
-	 * which next is also a BasicLinkedListNode given as parameter.
+	 * whose next is also a SinglyLinkedListNode given as parameter.
 	 * 
 	 * @param data
 	 *            The data that must be stored at the node.
 	 * @param next
-	 *            The next node of the BasicLinkedList containing this node.
+	 *            The next node of the SinglyLinkedList containing this node.
 	 * 
 	 */
 	public SinglyLinkedListNode(T data, SinglyLinkedListNode<T> next) {
@@ -56,9 +56,9 @@ public class SinglyLinkedListNode<T> {
 
 	/**
 	 * Returns true if the node executing this method is a NIL. Otherwise, returns
-	 * false. To be a NIL, a node must have data attribute as null.
+	 * false. To be a NIL, a node must have null data attribute.
 	 * 
-	 * @return The boolean that represents if the node is a NIL.
+	 * @return The boolean that indicates if the node is a NIL.
 	 * 
 	 */
 	public boolean isNIL() {
@@ -66,34 +66,12 @@ public class SinglyLinkedListNode<T> {
 	}
 
 	/**
-	 * Returns a textual representation to the the node using this method. For NIL
-	 * nodes it will be "NIL", for regular nodes the representation will be the
-	 * toString() of the stored data.
-	 * 
-	 * @return The textual representation of the node.
-	 * 
-	 */
-	@Override
-	public String toString() {
-		String toString = null;
-		if (!isNIL()) {
-			toString = this.data.toString();
-		}
-
-		else {
-			toString = "NIL";
-		}
-
-		return toString;
-	}
-
-	/**
 	 * Compares the node executing this method with the Object given as parameter to
-	 * determine if they are equals. To be equals, if the BasicLinkedListNode is not
-	 * a NIL, the Object must contain the same data. Otherwise, it must be a NIL
+	 * determine if they are equals. To be equals, if the SinglyLinkedListNode is
+	 * not a NIL, the Object must contain the same data. Otherwise, it must be a NIL
 	 * too.
 	 * 
-	 * @return The boolean that represents the equality between the node and the
+	 * @return The boolean that indicates the equality between the node and the
 	 *         object.
 	 * 
 	 */
@@ -105,15 +83,34 @@ public class SinglyLinkedListNode<T> {
 		if (obj instanceof SinglyLinkedListNode) {
 			if (!this.isNIL()) {
 				equals = this.data.equals(((SinglyLinkedListNode<T>) obj).data);
-			}
-
-			else {
+			} else {
 				equals = ((SinglyLinkedListNode<T>) obj).isNIL();
 			}
 
 		}
 
 		return equals;
+	}
+
+	/**
+	 * Returns a textual representation of the node using this method. For NIL nodes
+	 * it will be "NIL", for regular nodes the representation will be the toString()
+	 * of the stored data.
+	 * 
+	 * @return The textual representation of the node.
+	 * 
+	 */
+	@Override
+	public String toString() {
+		String toString = null;
+
+		if (!isNIL()) {
+			toString = this.data.toString();
+		} else {
+			toString = "NIL";
+		}
+
+		return toString;
 	}
 
 }

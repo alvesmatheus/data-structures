@@ -24,10 +24,10 @@ public class DoublyLinkedListNode<T> extends SinglyLinkedListNode<T> {
 
 	/**
 	 * Constructs a DoublyLinkedListNode containing the data given as parameter and
-	 * which next and previous are also a DoublyLinkedListNode given as parameters.
+	 * whose next and previous are also a DoublyLinkedListNode given as parameters.
 	 * 
 	 * @param data
-	 *            The data that must be stored at the node.
+	 *            The data to be stored in the node.
 	 * @param next
 	 *            The next node of the DoublyLinkedList containing this node.
 	 * @param next
@@ -40,7 +40,7 @@ public class DoublyLinkedListNode<T> extends SinglyLinkedListNode<T> {
 	}
 
 	public DoublyLinkedListNode<T> getPrevious() {
-		return previous;
+		return this.previous;
 	}
 
 	public void setPrevious(DoublyLinkedListNode<T> previous) {

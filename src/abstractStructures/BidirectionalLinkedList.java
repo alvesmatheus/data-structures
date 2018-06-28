@@ -1,8 +1,15 @@
 package abstractStructures;
 
 /**
- * The interface of a generic bidirectional linked list (also known as doubly
- * linked list).
+ * A doubly linked list is a linked data structure that consists of a set of
+ * sequentially linked nodes. Each node contains two links that references the
+ * previous and the next nodes in the list. The beginning and ending nodes point
+ * to a sentinel node (NIL) to facilitate iterates over the list. While adding
+ * or removing a node in a doubly linked list requires changing more links than
+ * the same operations on a singly linked list, the operations are simpler and
+ * potentially more efficient.
+ * 
+ * @author Matheus Alves dos Santos
  * 
  */
 public interface BidirectionalLinkedList<T> extends LinkedList<T> {
@@ -30,4 +37,5 @@ public interface BidirectionalLinkedList<T> extends LinkedList<T> {
 	 * 
 	 */
 	public void removeLast();
+	
 }

@@ -31,15 +31,14 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	}
 
 	/**
-	 * Returns how many objects have been inserted into the hash table until the
-	 * moment.
+	 * Returns true, if the hash table is empty, or false, otherwise.
 	 * 
-	 * @return the number of elements contained in the table.
+	 * @return the boolean that indicates if the table is empty.
 	 * 
 	 */
 	@Override
-	public int size() {
-		return this.elements;
+	public boolean isEmpty() {
+		return (this.elements == 0);
 	}
 
 	/**
@@ -54,14 +53,15 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	}
 
 	/**
-	 * Determines whether the hash table is empty or not.
+	 * Returns how many objects have been inserted into the hash table until the
+	 * moment.
 	 * 
-	 * @return true if the table is empty. False, otherwise.
+	 * @return the number of elements contained in the table.
 	 * 
 	 */
 	@Override
-	public boolean isEmpty() {
-		return (this.elements == 0);
+	public int size() {
+		return this.elements;
 	}
 
 }

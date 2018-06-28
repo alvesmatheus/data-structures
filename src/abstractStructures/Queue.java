@@ -4,34 +4,30 @@ import exceptions.QueueOverflowException;
 import exceptions.QueueUnderflowException;
 
 /**
- * The interface of a generic queue. The queue is able to store any kind of
- * data.
- *
+ * A queue is a First-In-First-Out (FIFO) data structure which elements are kept
+ * in order and which main operations are enqueue and dequeue. In a FIFO data
+ * structure, the first element added will be the first one to be removed.
+ * 
+ * @author Matheus Alves dos Santos
+ * 
  */
 public interface Queue<T> {
 
 	/**
-	 * Inserts a new element in the queue or returns an exception if the queue is
-	 * already full. Null elements are not allowed (the queue remains unchanged).
+	 * Returns true, if the queue is empty, or false, otherwise.
 	 * 
-	 * @param element
-	 *            The element that must be enqueued.
-	 * 
-	 * @throws QueueOverflowException
+	 * @return the boolean that indicates if the queue is empty.
 	 * 
 	 */
-	public void enqueue(T element) throws QueueOverflowException;
+	public boolean isEmpty();
 
 	/**
-	 * If the queue has elements, it removes the oldest one in the queue and returns
-	 * it. Otherwise, it throws an exception.
+	 * Returns true, if the queue is full, or false, otherwise.
 	 * 
-	 * @return the dequeued element.
-	 * 
-	 * @throws QueueUnderflowException
+	 * @return the boolean that indicates if the queue is full.
 	 * 
 	 */
-	public T dequeue() throws QueueUnderflowException;
+	public boolean isFull();
 
 	/**
 	 * Returns (without removing) the oldest element of the queue or null if the
@@ -43,19 +39,27 @@ public interface Queue<T> {
 	public T head();
 
 	/**
-	 * Returns true, if the queue is empty, or false, otherwise.
+	 * Inserts a new element at the queue or throws an exception if the queue is
+	 * already full. Null elements are not allowed. If the given element is null,
+	 * the queue will remain unchanged.
 	 * 
-	 * @return the boolean meaning if the queue is empty.
+	 * @param element
+	 *            The element to be enqueued.
+	 * 
+	 * @throws QueueOverflowException
 	 * 
 	 */
-	public boolean isEmpty();
+	public void enqueue(T element) throws QueueOverflowException;
 
 	/**
-	 * Returns true, if the queue is full, or false, otherwise.
+	 * Removes the oldest element from the queue and returns it. If the queue is
+	 * empty, this method throws a exception.
 	 * 
-	 * @return the boolean meaning if the queue is full.
+	 * @return the dequeued element.
+	 * 
+	 * @throws QueueUnderflowException
 	 * 
 	 */
-	public boolean isFull();
+	public T dequeue() throws QueueUnderflowException;
 
 }

@@ -17,15 +17,15 @@ package iterativeLinkedList;
 public class SpecialSinglyLinkedList<T> extends SinglyLinkedList<T> {
 
 	/**
-	 * This method validates two elements received by the list. The elements must
-	 * not be null to the list operations work properly.
+	 * This method validates two element received by the list. The elements must not
+	 * be null to be validated.
 	 * 
 	 * @param element1
 	 *            The first element to be validated.
 	 * @param element2
 	 *            The second element to be validated.
 	 * 
-	 * @return the boolean that represents the elements validity.
+	 * @return the boolean that indicates if the elements are valid.
 	 * 
 	 */
 	private boolean isValidInput(T element1, T element2) {

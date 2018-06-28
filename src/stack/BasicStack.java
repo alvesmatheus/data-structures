@@ -38,12 +38,12 @@ public class BasicStack<T> implements Stack<T> {
 
 	/**
 	 * This method validates a element received by the stack. The element must not
-	 * be null to the stack operations work properly.
+	 * be null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a stack operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
 	private boolean isValidInput(T element) {
@@ -53,7 +53,7 @@ public class BasicStack<T> implements Stack<T> {
 	/**
 	 * Returns true, if the stack is empty, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the stack is empty.
+	 * @return the boolean that indicates if the stack is empty.
 	 * 
 	 */
 	@Override
@@ -64,7 +64,7 @@ public class BasicStack<T> implements Stack<T> {
 	/**
 	 * Returns true, if the stack is full, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the stack is full.
+	 * @return the boolean that indicates if the stack is full.
 	 * 
 	 */
 	@Override
@@ -73,10 +73,10 @@ public class BasicStack<T> implements Stack<T> {
 	}
 
 	/**
-	 * Returns (without removing) the newest element of the stack or null if the
+	 * Returns (without removing) the latest element of the stack or null if the
 	 * stack is empty.
 	 * 
-	 * @return the newest element of the stack (or null if the stack is empty).
+	 * @return the latest element of the stack (or null if the stack is empty).
 	 * 
 	 */
 	@Override
@@ -91,11 +91,12 @@ public class BasicStack<T> implements Stack<T> {
 	}
 
 	/**
-	 * Inserts a new element in the stack or returns an exception if the stack is
-	 * already full. Null elements are not allowed (the queue remains unchanged).
+	 * Inserts a new element in the stack or throws an exception if the stack is
+	 * already full. Null elements are not allowed. If the given element is null,
+	 * the stack will remain unchanged.
 	 * 
 	 * @param element
-	 *            The element that must be pushed.
+	 *            The element to be pushed.
 	 * 
 	 * @throws StackOverflowException
 	 * 
@@ -112,8 +113,8 @@ public class BasicStack<T> implements Stack<T> {
 	}
 
 	/**
-	 * If the stack has elements, it removes the newest one in the stack and returns
-	 * it. Otherwise, it throws an exception.
+	 * Removes the latest element from the queue and returns it. If the stack is
+	 * empty, this method throws a exception.
 	 * 
 	 * @return the popped element.
 	 * 

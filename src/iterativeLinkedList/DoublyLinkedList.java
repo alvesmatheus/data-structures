@@ -19,7 +19,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	protected DoublyLinkedListNode<T> last;
 
 	/**
-	 * Constructs a new DoublyLinkedList which head and last attributes will start
+	 * Constructs a new DoublyLinkedList whose head and last attributes will start
 	 * as the same NIL node.
 	 * 
 	 */
@@ -29,7 +29,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	public DoublyLinkedListNode<T> getLast() {
-		return last;
+		return this.last;
 	}
 
 	public void setLast(DoublyLinkedListNode<T> last) {
@@ -37,22 +37,8 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * This method validates a element received by the list. The element must not be
-	 * null to the list operations work properly.
-	 * 
-	 * @param element
-	 *            The element that must be used in a list operation.
-	 * 
-	 * @return the boolean that represents the element validity.
-	 * 
-	 */
-	private boolean isValidInput(T element) {
-		return (element != null);
-	}
-
-	/**
-	 * Inserts a new element at the end of the list. Null elements are not allowed
-	 * (the list remains unchanged).
+	 * Inserts a new element at the end of the list. Null elements are not allowed.
+	 * If the given element is null, the list will remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be inserted.
@@ -60,7 +46,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 */
 	@Override
 	public void insert(T element) {
-		if (this.isValidInput(element)) {
+		if (super.isValidInput(element)) {
 
 			DoublyLinkedListNode<T> newNIL = new DoublyLinkedListNode<T>();
 			DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<T>();
@@ -69,7 +55,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 
 			newNode.setData(element);
 			newNode.setNext(newNIL);
-			newNode.setPrevious(this.last);
+			newNode.setPrevious(this.getLast());
 
 			this.getLast().setNext(newNode);
 
@@ -82,8 +68,8 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * Inserts a new element in the first position (head) of the list. The "head"
-	 * reference must be updated.
+	 * Inserts a new element at the beginning of the list. Null elements are not
+	 * allowed. If the given element is null, the list will remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be inserted.
@@ -91,7 +77,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 */
 	@Override
 	public void insertFirst(T element) {
-		if (this.isValidInput(element)) {
+		if (super.isValidInput(element)) {
 
 			DoublyLinkedListNode<T> newNIL = new DoublyLinkedListNode<T>();
 			DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<T>();
@@ -99,10 +85,10 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 			newNIL.setNext(newNode);
 
 			newNode.setData(element);
-			newNode.setNext(this.getHead());
+			newNode.setNext(super.getHead());
 			newNode.setPrevious(newNIL);
 
-			((DoublyLinkedListNode<T>) this.getHead()).setPrevious(newNode);
+			((DoublyLinkedListNode<T>) super.getHead()).setPrevious(newNode);
 
 			if (this.getHead().isNIL()) {
 				setLast(newNode);
@@ -113,8 +99,8 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * Removes an element from the list. If the element is not contained in the
-	 * list, the list must remain unchanged.
+	 * Removes an element from the list. If the list does not contain the element,
+	 * the list must remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be removed.
@@ -122,9 +108,9 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	 */
 	@Override
 	public void remove(T element) {
-		if (this.isValidInput(element)) {
+		if (super.isValidInput(element)) {
 
-			if (this.getHead().getData().equals(element)) {
+			if (super.getHead().getData().equals(element)) {
 				this.removeFirst();
 			}
 
@@ -133,7 +119,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 			}
 
 			else {
-				DoublyLinkedListNode<T> auxNode = (DoublyLinkedListNode<T>) this.getHead();
+				DoublyLinkedListNode<T> auxNode = (DoublyLinkedListNode<T>) super.getHead();
 
 				while ((!auxNode.isNIL()) && (!auxNode.getData().equals(element))) {
 					auxNode = (DoublyLinkedListNode<T>) auxNode.getNext();
@@ -148,41 +134,39 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 	}
 
 	/**
-	 * Removes the first element (head) of the list. The "head" reference must be
-	 * updated.
+	 * Removes the first element of the list.
 	 * 
 	 */
 	@Override
 	public void removeFirst() {
 		if (!this.isEmpty()) {
 
-			if (this.getHead().getNext().isNIL()) {
+			if (super.getHead().getNext().isNIL()) {
 				setHead(new DoublyLinkedListNode<T>()); // The list is now a single NIL.
-				setLast((DoublyLinkedListNode<T>) this.getHead());
+				setLast((DoublyLinkedListNode<T>) super.getHead());
 			}
 
 			else {
 				DoublyLinkedListNode<T> newNIL = new DoublyLinkedListNode<T>();
-				newNIL.setNext(this.getHead().getNext());
+				newNIL.setNext(super.getHead().getNext());
 
-				setHead(this.head.getNext());
-				((DoublyLinkedListNode<T>) this.getHead()).setPrevious(newNIL);
+				setHead(super.getHead().getNext());
+				((DoublyLinkedListNode<T>) super.getHead()).setPrevious(newNIL);
 			}
 		}
 	}
 
 	/**
-	 * Removes the last element (last) of the list. The "last" reference must be
-	 * updated.
+	 * Removes the last element of the list.
 	 * 
 	 */
 	@Override
 	public void removeLast() {
-		if (!this.isEmpty()) {
+		if (!super.isEmpty()) {
 
-			if (this.last.getPrevious().isNIL()) {
+			if (this.getLast().getPrevious().isNIL()) {
 				setHead(new DoublyLinkedListNode<T>()); // The list is now a single NIL.
-				setLast((DoublyLinkedListNode<T>) this.getHead());
+				setLast((DoublyLinkedListNode<T>) super.getHead());
 			}
 
 			else {

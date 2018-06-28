@@ -19,7 +19,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	protected SinglyLinkedList<T> next;
 
 	/**
-	 * Constructs a new SinglyLinkedList which data and next attributes will start
+	 * Constructs a new SinglyLinkedList whose data and next attributes will start
 	 * as null. It can be called NIL node or empty list.
 	 * 
 	 */
@@ -31,7 +31,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	 * equals to the given parameters.
 	 * 
 	 * @param data
-	 *            The data to be stored at the new node.
+	 *            The data to be stored in the new node.
 	 * @param next
 	 *            The SinglyLinkedList that comes after the one being created.
 	 * 
@@ -59,22 +59,22 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 
 	/**
 	 * This method validates a element received by the list. The element must not be
-	 * null to the list operations work properly.
+	 * null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a list operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
-	private boolean isValidInput(T element) {
+	protected boolean isValidInput(T element) {
 		return (element != null);
 	}
 
 	/**
 	 * Returns true, if the list is empty, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the list is empty.
+	 * @return the boolean that indicates if the list is empty.
 	 * 
 	 */
 	@Override
@@ -100,35 +100,8 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	}
 
 	/**
-	 * Searches for a given element in the list. It will return the element if the
-	 * list contains it. Otherwise, it will return null.
-	 * 
-	 * @param element
-	 *            the element being searched for.
-	 * 
-	 * @return the element if it is in the list or null, otherwise.
-	 * 
-	 */
-	@Override
-	public T search(T element) {
-		T target = null;
-
-		if (!this.isEmpty()) {
-			if (this.getData().equals(element)) {
-				target = this.getData();
-			}
-
-			else {
-				target = this.getNext().search(element);
-			}
-		}
-
-		return target;
-	}
-
-	/**
-	 * Inserts a new element at the end of the list. Null elements are not allowed
-	 * (the list remains unchanged).
+	 * Inserts a new element at the end of the list. Null elements are not allowed.
+	 * If the given element is null, the list will remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be inserted.
@@ -150,8 +123,8 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	}
 
 	/**
-	 * Removes an element from the list. If the element is not contained in the
-	 * list, the list must remain unchanged.
+	 * Removes an element from the list. If the list does not contain the element,
+	 * the list must remain unchanged.
 	 * 
 	 * @param element
 	 *            the element to be removed.
@@ -175,31 +148,39 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	}
 
 	/**
-	 * Recursively inserts all the data stored at the SinglyLinkedList in a array
-	 * keeping the same order they appear in the list.
+	 * Searches for a given element in the list. It will return the element if the
+	 * list contains it. Otherwise, it will return null.
 	 * 
-	 * @param array
-	 *            The array used to store the SinglyLinkedList data.
-	 * @param node
-	 *            The SinglyLinkedList's node which data will be stored now.
-	 * @param index
-	 *            The index of the array where the data must be stored.
+	 * @param element
+	 *            the element being searched for.
+	 * 
+	 * @return the searched element, if it is in the list, or null, otherwise.
 	 * 
 	 */
-	private void recursiveToArray(T[] array, SinglyLinkedList<T> node, int index) {
-		if (!node.isEmpty()) {
-			array[index] = node.getData();
-			this.recursiveToArray(array, node.getNext(), ++index);
+	@Override
+	public T search(T element) {
+		T target = null;
+
+		if (!this.isEmpty()) {
+			if (this.getData().equals(element)) {
+				target = this.getData();
+			}
+
+			else {
+				target = this.getNext().search(element);
+			}
 		}
+
+		return target;
 	}
 
 	/**
-	 * Returns an array containing all the elements in the structure. The array does
-	 * not contain empty spaces (or null elements). The elements are put into the
-	 * array from the beginning to the end of the list.
+	 * Returns an array containing all the elements in the list. The array does not
+	 * contain empty spaces (or null elements). The elements are put into the array
+	 * from the beginning to the end of the list.
 	 * 
-	 * @return an array containing all the elements contained in the structure in
-	 *         the same order they appear.
+	 * @return an array containing all the elements contained in the list in the
+	 *         same order they appear.
 	 * 
 	 */
 	@Override
@@ -211,6 +192,14 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		this.recursiveToArray(array, this, 0);
 
 		return array;
+	}
+
+	// RECURSIVE AUXILIAR METHOD TO: toArray().
+	private void recursiveToArray(T[] array, SinglyLinkedList<T> node, int index) {
+		if (!node.isEmpty()) {
+			array[index] = node.getData();
+			this.recursiveToArray(array, node.getNext(), ++index);
+		}
 	}
 
 }

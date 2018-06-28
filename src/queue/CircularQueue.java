@@ -35,30 +35,30 @@ public class CircularQueue<T> implements Queue<T> {
 	public CircularQueue(int size) {
 		if (size >= 1) {
 			array = (T[]) new Object[size];
+			elements = 0;
 			head = -1;
 			tail = -1;
-			elements = 0;
 		}
 	}
 
 	/**
 	 * This method validates a element received by the queue. The element must not
-	 * be null to the queue operations work properly.
+	 * be null to be validated.
 	 * 
 	 * @param element
-	 *            The element that must be used in a queue operation.
+	 *            The element to be validated.
 	 * 
-	 * @return the boolean that represents the element validity.
+	 * @return the boolean that indicates if the element is valid.
 	 * 
 	 */
 	private boolean isValidInput(T element) {
 		return (element != null);
 	}
-	
+
 	/**
 	 * Returns true, if the queue is empty, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the queue is empty.
+	 * @return the boolean that indicates if the queue is empty.
 	 * 
 	 */
 	@Override
@@ -69,7 +69,7 @@ public class CircularQueue<T> implements Queue<T> {
 	/**
 	 * Returns true, if the queue is full, or false, otherwise.
 	 * 
-	 * @return the boolean meaning if the queue is full.
+	 * @return the boolean that indicates if the queue is full.
 	 * 
 	 */
 	@Override
@@ -94,13 +94,14 @@ public class CircularQueue<T> implements Queue<T> {
 
 		return head;
 	}
-	
+
 	/**
-	 * Inserts a new element in the queue or returns an exception if the queue is
-	 * already full. Null elements are not allowed (the queue remains unchanged).
+	 * Inserts a new element at the queue or throws an exception if the queue is
+	 * already full. Null elements are not allowed. If the given element is null,
+	 * the queue will remain unchanged.
 	 * 
 	 * @param element
-	 *            The element that must be enqueued.
+	 *            The element to be enqueued.
 	 * 
 	 * @throws QueueOverflowException
 	 * 
@@ -127,8 +128,8 @@ public class CircularQueue<T> implements Queue<T> {
 	}
 
 	/**
-	 * If the queue has elements, it removes the oldest one in the queue and returns
-	 * it. Otherwise, it throws an exception.
+	 * Removes the oldest element from the queue and returns it. If the queue is
+	 * empty, this method throws a exception.
 	 * 
 	 * @return the dequeued element.
 	 * 
