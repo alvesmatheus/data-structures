@@ -1,5 +1,7 @@
 package abstractStructures;
 
+import binaryTree.BinaryTreeNode;
+
 /**
  * A binary tree is a tree data structure in which each node has at most two
  * children, which are referred to as the left child and the right child. The
@@ -58,15 +60,16 @@ public interface BinaryTree<T> {
 
 	/**
 	 * Searches for a given element in the tree. It will return the element if the
-	 * tree contains it. Otherwise, it will return null.
+	 * tree contains it. Otherwise, it will return a NIL node.
 	 * 
 	 * @param element
 	 *            the element being searched for.
 	 * 
-	 * @return the searched element, if it is in the tree, or null, otherwise.
+	 * @return the node containing the searched element, if it is in the tree, or
+	 *         NIL, otherwise.
 	 * 
 	 */
-	public T search(T element);
+	public BinaryTreeNode<T> search(T element);
 
 	/**
 	 * Creates an array containing the binary tree elements. This array is filled

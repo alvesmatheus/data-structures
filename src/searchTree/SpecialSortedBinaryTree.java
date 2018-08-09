@@ -1,5 +1,7 @@
 package searchTree;
 
+import java.util.LinkedList;
+
 import binaryTree.BinaryTreeNode;
 
 /**
@@ -68,6 +70,35 @@ public class SpecialSortedBinaryTree<T extends Comparable<T>> extends SortedBina
 		}
 
 		return index;
+	}
+
+	/**
+	 * Creates an array containing the binary tree elements. This array is filled
+	 * according to the levels of the binary tree.
+	 * 
+	 * @return a array containing the binary tree elements ordered by the tree level
+	 *         that contains them.
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	public T[] orderedByLevel() {
+		T[] byLevel = (T[]) new Comparable[this.size()];
+		int index = 0;
+
+		LinkedList<BinaryTreeNode<T>> nodes = new LinkedList<>();
+		nodes.add(this.getRoot());
+
+		while (!nodes.isEmpty()) {
+			if (!nodes.get(0).isEmpty()) {
+				byLevel[index++] = nodes.get(0).getData();
+				nodes.add(nodes.get(0).getLeft());
+				nodes.add(nodes.get(0).getRight());
+			}
+
+			nodes.remove(0);
+		}
+
+		return byLevel;
 	}
 
 }
