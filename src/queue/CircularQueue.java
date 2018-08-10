@@ -34,10 +34,10 @@ public class CircularQueue<T> implements Queue<T> {
 	@SuppressWarnings("unchecked")
 	public CircularQueue(int size) {
 		if (size >= 1) {
-			array = (T[]) new Object[size];
-			elements = 0;
-			head = -1;
-			tail = -1;
+			this.array = (T[]) new Object[size];
+			this.elements = 0;
+			this.head = -1;
+			this.tail = -1;
 		}
 	}
 

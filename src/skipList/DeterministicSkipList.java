@@ -28,8 +28,8 @@ public class DeterministicSkipList<T> implements SkipList<T> {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DeterministicSkipList(int maxHeight) {
-		head = new SkipListNode(Integer.MIN_VALUE, null, maxHeight);
-		tail = new SkipListNode(Integer.MAX_VALUE, null, maxHeight);
+		this.head = new SkipListNode(Integer.MIN_VALUE, null, maxHeight);
+		this.tail = new SkipListNode(Integer.MAX_VALUE, null, maxHeight);
 		this.maxHeight = maxHeight;
 		connectHeadToTail();
 	}
@@ -48,7 +48,7 @@ public class DeterministicSkipList<T> implements SkipList<T> {
 		return this.head;
 	}
 
-	public void setHead(SkipListNode<T> head) {
+	protected void setHead(SkipListNode<T> head) {
 		this.head = head;
 	}
 
@@ -56,7 +56,7 @@ public class DeterministicSkipList<T> implements SkipList<T> {
 		return this.tail;
 	}
 
-	public void setTail(SkipListNode<T> tail) {
+	protected void setTail(SkipListNode<T> tail) {
 		this.tail = tail;
 	}
 
@@ -64,7 +64,7 @@ public class DeterministicSkipList<T> implements SkipList<T> {
 		return this.maxHeight;
 	}
 
-	public void setMaxHeight(int maxHeight) {
+	protected void setMaxHeight(int maxHeight) {
 		this.maxHeight = maxHeight;
 	}
 

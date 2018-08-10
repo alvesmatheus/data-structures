@@ -32,8 +32,8 @@ public class BasicQueue<T> implements Queue<T> {
 	@SuppressWarnings("unchecked")
 	public BasicQueue(int size) {
 		if (size >= 1) {
-			array = (T[]) new Object[size];
-			tail = -1;
+			this.array = (T[]) new Object[size];
+			this.tail = -1;
 		}
 	}
 

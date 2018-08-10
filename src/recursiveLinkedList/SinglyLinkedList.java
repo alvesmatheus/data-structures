@@ -45,7 +45,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		return this.data;
 	}
 
-	public void setData(T data) {
+	protected void setData(T data) {
 		this.data = data;
 	}
 
@@ -53,7 +53,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		return this.next;
 	}
 
-	public void setNext(SinglyLinkedList<T> next) {
+	protected void setNext(SinglyLinkedList<T> next) {
 		this.next = next;
 	}
 

@@ -22,12 +22,20 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	 * 
 	 */
 	public AbstractHashTable() {
-		elements = 0;
-		collisions = 0;
+		this.elements = 0;
+		this.collisions = 0;
+	}
+
+	public int getElements() {
+		return this.elements;
 	}
 
 	public int getCollisions() {
 		return this.collisions;
+	}
+
+	public Object[] getTable() {
+		return this.table;
 	}
 
 	/**
@@ -38,7 +46,7 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return (this.elements == 0);
+		return (this.getElements() == 0);
 	}
 
 	/**
@@ -49,7 +57,7 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	 */
 	@Override
 	public int capacity() {
-		return this.table.length;
+		return this.getTable().length;
 	}
 
 	/**
@@ -61,7 +69,7 @@ public abstract class AbstractHashTable<T> implements HashTable<T> {
 	 */
 	@Override
 	public int size() {
-		return this.elements;
+		return this.getElements();
 	}
 
 }

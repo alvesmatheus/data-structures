@@ -40,12 +40,54 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 		this.index = -1;
 	}
 
+	public T[] getHeap() {
+		return this.heap;
+	}
+
+	protected void setHeap(T[] heap) {
+		this.heap = heap;
+	}
+
+	public int getIndex() {
+		return this.index;
+	}
+
+	protected void setIndex(int index) {
+		this.index = index;
+	}
+
 	public Comparator<T> getComparator() {
 		return this.comparator;
 	}
 
-	public void setComparator(Comparator<T> comparator) {
+	protected void setComparator(Comparator<T> comparator) {
 		this.comparator = comparator;
+	}
+
+	/**
+	 * Returns the element stored at the given index of the heap.
+	 * 
+	 * @param index
+	 *            the index of the wanted element.
+	 * 
+	 * @return the element stored at the given index.
+	 * 
+	 */
+	private T getElement(int i) {
+		return this.heap[i];
+	}
+
+	/**
+	 * Stores the given element at the given index of the heap.
+	 * 
+	 * @param index
+	 *            the index where the element must be stored.
+	 * @param element
+	 *            the element to be stored.
+	 * 
+	 */
+	private void setElement(int i, T element) {
+		this.heap[i] = element;
 	}
 
 	/**
@@ -106,7 +148,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	 * 
 	 */
 	private boolean greaterThan(int i, int j) {
-		return (this.getComparator().compare(this.heap[i], this.heap[j]) > 0);
+		return (this.getComparator().compare(this.getElement(i), this.getElement(i)) > 0);
 	}
 
 	/**
@@ -119,9 +161,9 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	 * 
 	 */
 	private void swap(int i, int j) {
-		T element = this.heap[i];
-		this.heap[i] = this.heap[j];
-		this.heap[j] = element;
+		T element = this.getElement(i);
+		this.setElement(i, this.getElement(j));
+		this.setElement(j, element);
 	}
 
 	/**
@@ -139,11 +181,11 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 			int leftChild = this.leftChild(position);
 			int rightChild = this.rightChild(position);
 
-			if ((leftChild <= this.index) && this.greaterThan(leftChild, largest)) {
+			if ((leftChild <= this.getIndex()) && this.greaterThan(leftChild, largest)) {
 				largest = leftChild;
 			}
 
-			if ((rightChild <= this.index) && this.greaterThan(rightChild, largest)) {
+			if ((rightChild <= this.getIndex()) && this.greaterThan(rightChild, largest)) {
 				largest = rightChild;
 			}
 
@@ -191,7 +233,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return (this.index == -1);
+		return (this.getIndex() == -1);
 	}
 
 	/**
@@ -201,7 +243,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	 * 
 	 */
 	public int size() {
-		return (this.index + 1);
+		return (this.getIndex() + 1);
 	}
 
 	/**
@@ -217,7 +259,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 		T root = null;
 
 		if (!this.isEmpty()) {
-			root = this.heap[0];
+			root = this.getElement(0);
 		}
 
 		return root;
@@ -233,14 +275,15 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	 */
 	@Override
 	public void insert(T element) {
-		if (this.index == (this.heap.length - 1)) {
-			this.heap = Arrays.copyOf(this.heap, this.heap.length + INCREASING_FACTOR);
+		if (this.getIndex() == (this.getHeap().length - 1)) {
+			this.setHeap(Arrays.copyOf(this.getHeap(), this.getHeap().length + INCREASING_FACTOR));
 		}
 
 		if (this.isValidInput(element)) {
-			this.index++;
-			int position = this.index;
-			this.heap[position] = element;
+			this.setIndex(this.getIndex() + 1);
+			;
+			int position = this.getIndex();
+			this.setElement(position, element);
 
 			while ((position > 0) && this.greaterThan(position, this.parent(position))) {
 				this.swap(position, parent(position));
@@ -261,8 +304,8 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 		T root = this.root();
 
 		if (this.isValidInput(root)) {
-			this.swap(0, this.index);
-			this.heap[this.index--] = null;
+			this.swap(0, this.getIndex());
+			this.setElement(this.getIndex() - 1, null);
 			this.heapify(0);
 		}
 
@@ -280,10 +323,10 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	@Override
 	public void build(T[] array) {
 		if (array != null) {
-			this.heap = array;
-			this.index = array.length - 1;
+			this.setHeap(array);
+			this.setIndex(this.getHeap().length - 1);
 
-			for (int i = this.index; i >= 0; i--) {
+			for (int i = this.getIndex(); i >= 0; i--) {
 				this.heapify(i);
 			}
 		}
@@ -301,7 +344,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 	@Override
 	public T[] toArray() {
 		ArrayList<T> array = new ArrayList<T>();
-		for (T element : this.heap) {
+		for (T element : this.getHeap()) {
 			if (element != null) {
 				array.add(element);
 			}
@@ -328,8 +371,8 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 
 		if (array != null) {
 			Comparator<T> originalComparator = this.getComparator();
-			this.comparator = ((o1, o2) -> o2.compareTo(o1));
-			this.index = -1;
+			this.setComparator(((o1, o2) -> o2.compareTo(o1)));
+			this.setIndex(-1);
 
 			this.build(array);
 
@@ -338,7 +381,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T> {
 				sortedArray[i] = this.extract();
 			}
 
-			this.comparator = originalComparator;
+			this.setComparator(originalComparator);
 		}
 
 		return sortedArray;

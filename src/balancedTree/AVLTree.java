@@ -140,7 +140,7 @@ public class AVLTree<T extends Comparable<T>> extends SortedBinaryTree<T> {
 	 * @return the balance of the given node.
 	 * 
 	 */
-	protected int calculateBalance(BinaryTreeNode<T> node) {
+	private int calculateBalance(BinaryTreeNode<T> node) {
 		return super.height(node.getLeft()) - super.height(node.getRight());
 	}
 
@@ -152,7 +152,7 @@ public class AVLTree<T extends Comparable<T>> extends SortedBinaryTree<T> {
 	 *            The node that must be rebalanced.
 	 * 
 	 */
-	protected void rebalance(BinaryTreeNode<T> node) {
+	private void rebalance(BinaryTreeNode<T> node) {
 		int balance = this.calculateBalance(node);
 
 		if (balance > 1) {
@@ -181,7 +181,7 @@ public class AVLTree<T extends Comparable<T>> extends SortedBinaryTree<T> {
 	 *            The node that must be rebalanced.
 	 * 
 	 */
-	protected void rebalanceUp(BinaryTreeNode<T> currentNode) {
+	private void rebalanceUp(BinaryTreeNode<T> currentNode) {
 		if (!currentNode.isEmpty()) {
 			this.rebalance(currentNode);
 			this.rebalanceUp(currentNode.getParent());

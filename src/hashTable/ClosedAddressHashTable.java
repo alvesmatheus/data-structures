@@ -85,7 +85,7 @@ public class ClosedAddressHashTable<T> extends AbstractHashTable<T> {
 		return this.hashFunction;
 	}
 
-	public void setHashFunction(HashFunction<T> hashFunction) {
+	protected void setHashFunction(HashFunction<T> hashFunction) {
 		this.hashFunction = hashFunction;
 	}
 

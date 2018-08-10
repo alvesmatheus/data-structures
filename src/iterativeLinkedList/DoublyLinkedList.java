@@ -32,7 +32,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 		return this.last;
 	}
 
-	public void setLast(DoublyLinkedListNode<T> last) {
+	protected void setLast(DoublyLinkedListNode<T> last) {
 		this.last = last;
 	}
 

@@ -86,7 +86,7 @@ public class OpenAddressHashTable<T> extends AbstractHashTable<T> {
 		return this.hashFunction;
 	}
 
-	public void setHashFunction(ProbingHashFunction<T> hashFunction) {
+	protected void setHashFunction(ProbingHashFunction<T> hashFunction) {
 		this.hashFunction = hashFunction;
 	}
 

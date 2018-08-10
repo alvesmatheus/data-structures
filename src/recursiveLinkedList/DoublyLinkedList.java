@@ -48,7 +48,7 @@ public class DoublyLinkedList<T> extends SinglyLinkedList<T> implements Bidirect
 		return this.previous;
 	}
 
-	public void setPrevious(DoublyLinkedList<T> previous) {
+	protected void setPrevious(DoublyLinkedList<T> previous) {
 		this.previous = previous;
 	}
 

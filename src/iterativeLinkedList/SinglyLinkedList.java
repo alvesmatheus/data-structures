@@ -29,7 +29,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		return this.head;
 	}
 
-	public void setHead(SinglyLinkedListNode<T> head) {
+	protected void setHead(SinglyLinkedListNode<T> head) {
 		this.head = head;
 	}
 
