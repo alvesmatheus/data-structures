@@ -33,8 +33,9 @@ public interface SkipList<T> {
 	public int height();
 
 	/**
-	 * Inserts a new element (using the given height) at the skip list. If the skip
-	 * list already contains a node with the same key, only updates the node value.
+	 * Inserts a new element (using the given height) in the skip list. If the skip
+	 * list already contains a node with the same key, this method only updates the
+	 * node value.
 	 * 
 	 * @param key
 	 *            The key for access of the value to be inserted.
